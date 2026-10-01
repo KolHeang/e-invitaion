@@ -1,0 +1,33 @@
+{
+  "name": "លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍ - គល់ ហាង & ស៊ាប សៀកលាង",
+  "short_name": "E-Invitation",
+  "description": "លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍បែបឌីជីថល គល់ ហាង & ស៊ាប សៀកលាង",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1c060d",
+  "theme_color": "#8b152b",
+  "orientation": "portrait",
+  "lang": "km",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "./assets/images/icon-512.jpg",
+      "sizes": "192x192 512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "social"],
+  "shortcuts": [
+    {
+      "name": "ទីតាំងកម្មវិធី",
+      "url": "./index.html#location",
+      "description": "មើលទីតាំង និងផែនទី"
+    },
+    {
+      "name": "ឆ្លើយតប RSVP",
+      "url": "./index.html#rsvp",
+      "description": "បញ្ជាក់ការចូលរួម"
+    }
+  ]
+}
