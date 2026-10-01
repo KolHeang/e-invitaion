@@ -1,32 +1,50 @@
 {
   "name": "លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍ - គល់ ហាង & ស៊ាប សៀកលាង",
-  "short_name": "E-Invitation",
-  "description": "លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍បែបឌីជីថល គល់ ហាង & ស៊ាប សៀកលាង",
-  "start_url": "./index.html",
+  "short_name": "គល់ ហាង & ស៊ាប សៀកលាង",
+  "description": "លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍បែបឌីជីថល គល់ ហាង & ស៊ាប សៀកលាង ថ្ងៃទី២៨ ខែវិច្ឆិកា ឆ្នាំ២០២៦",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#1c060d",
-  "theme_color": "#8b152b",
+  "background_color": "#FAF7F2",
+  "theme_color": "#C59A27",
   "orientation": "portrait",
   "lang": "km",
   "dir": "ltr",
   "icons": [
     {
-      "src": "./assets/images/icon-512.jpg",
-      "sizes": "192x192 512x512",
+      "src": "/assets/images/icon-512.jpg",
+      "sizes": "192x192",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
     }
   ],
   "categories": ["lifestyle", "social"],
   "shortcuts": [
     {
+      "name": "ទំព័រដើម",
+      "url": "/#home",
+      "description": "ទំព័រដើមនៃលិខិតអញ្ជើញ"
+    },
+    {
       "name": "ទីតាំងកម្មវិធី",
-      "url": "./index.html#location",
+      "url": "/#location",
       "description": "មើលទីតាំង និងផែនទី"
     },
     {
       "name": "ឆ្លើយតប RSVP",
-      "url": "./index.html#rsvp",
+      "url": "/#rsvp",
       "description": "បញ្ជាក់ការចូលរួម"
     }
   ]

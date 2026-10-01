@@ -1,7 +1,22 @@
-// Service Worker for Khmer E-Invitation
-const CACHE_NAME = 'e-invitation-khmer-v6';
+// Service Worker for Khmer Wedding E-Invitation
+const CACHE_NAME = 'e-invitation-v1';
+const STATIC_ASSETS = [
+  '/',
+  '/manifest.json',
+  '/assets/images/icon-512.jpg',
+  '/assets/images/couple-hero.jpg',
+  '/assets/images/couple-casual-1.jpg',
+  '/assets/images/couple-casual-2.jpg'
+];
 
 self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(STATIC_ASSETS).catch((err) => {
+        console.log('[SW] Cache prefetch error:', err);
+      });
+    })
+  );
   self.skipWaiting();
 });
 
@@ -10,8 +25,10 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keyList) => {
       return Promise.all(
         keyList.map((key) => {
-          console.log('[ServiceWorker] Removing old cache', key);
-          return caches.delete(key);
+          if (key !== CACHE_NAME) {
+            console.log('[SW] Removing old cache:', key);
+            return caches.delete(key);
+          }
         })
       );
     })
@@ -19,19 +36,30 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Network First strategy to ensure live updates are always immediately visible
+// Network First with Cache Fallback strategy
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  // For navigation or scripts/styles, always fetch from network first
   event.respondWith(
     fetch(event.request)
-      .then((response) => {
-        // Only cache valid GET responses for media/fonts if desired
-        return response;
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        }
+        return networkResponse;
       })
       .catch(() => {
-        return caches.match(event.request);
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          if (event.request.mode === 'navigate') {
+            return caches.match('/');
+          }
+        });
       })
   );
 });
