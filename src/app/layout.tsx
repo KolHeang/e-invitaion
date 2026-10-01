@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister';
+import PwaInstallPrompt from '@/components/PwaInstallPrompt';
 
 export const metadata: Metadata = {
   title: 'លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍ | គល់ ហាង & ស៊ាប សៀកលាង',
@@ -49,6 +50,7 @@ export default function RootLayout({
       </head>
       <body>
         <ServiceWorkerRegister />
+        <PwaInstallPrompt />
         {children}
       </body>
     </html>
